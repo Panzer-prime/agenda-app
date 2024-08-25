@@ -9,18 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sequelize/mysql": "^7.0.0-alpha.41",
+    "bcrypt": "^5.1.1",
+    "jose": "^5.7.0",
+    "libphonenumber-js": "^1.11.7",
+    "mysql2": "^3.11.0",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "sequelize": "^6.37.3",
+    "sweetalert2": "^11.12.4",
+    "sweetalert2-react-content": "^5.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "typescript": "^5"
   }
 }
