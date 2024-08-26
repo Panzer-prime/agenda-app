@@ -7,6 +7,7 @@ import { deleteSession } from "@/lib/utils/session";
 import { deleteContact } from "@/lib/utils/deleteContact";
 import Image from "next/image";
 import User from "@/public/user.svg";
+import { useRouter } from "next/navigation";
 
 interface ContactProps {
   savedName: string;
@@ -25,7 +26,7 @@ type userProps = {
 
 function Admin() {
   const [users, setUsers] = useState<userProps[]>();
-
+  const router = useRouter();
   useEffect(() => {
     const loadContacts = async () => {
       try {
@@ -49,6 +50,7 @@ function Admin() {
     }).then((res) => {
       if (res.isConfirmed) {
         deleteSession();
+        router.push("/login");
       }
     });
   };
@@ -65,18 +67,24 @@ function Admin() {
           </button>
         </div>
         <div className="flex flex-col gap-y-4">
-          {users?.map((user) => (
-            <div key={user.userID} className="flex flex-col">
-              <div className="flex flex-row gap-x-7 font-bold ">
-                <p>
-                  {user.nume} {user.prenume}
-                </p>
-                <p>{user.numar}</p>
+          {users ? (
+            users?.map((user) => (
+              <div key={user.userID} className="flex flex-col">
+                <div className="flex flex-row gap-x-7 font-bold ">
+                  <p>
+                    {user.nume} {user.prenume}
+                  </p>
+                  <p>{user.numar}</p>
+                </div>
+                <p className="font-semibold">{user.description}</p>
+                <Contacts contacts={user.phoneNumbers} />
               </div>
-              <p className="font-semibold">{user.description}</p>
-              <Contacts contacts={user.phoneNumbers} />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="font-bold  w-full text-center ">
+              No users couldnt be found
+            </p>
+          )}
         </div>
       </div>
     </div>
